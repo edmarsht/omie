@@ -78,8 +78,6 @@ a {
 
 /* css search */
 .app__search {
-  background-color: #F7F7F7;
-  border-radius: 5px;
   color: #343434;
 }
 .app__search li {
