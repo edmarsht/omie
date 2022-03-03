@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+/* css global */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  color: #343434;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+  color: unset;
+  text-decoration: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.section__padding {
+  padding: 4rem 6rem 2rem 6rem;
+}
+
+.section__margin {
+  margin: 3rem 6rem 4rem 6rem;
+}
+
+/* css navbar */
+.app__navbar {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.3rem 2rem;
+  border-bottom: 1px #f2f2f2 solid;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app__navbar-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem;
+  flex: 0.9;
+  padding: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app__navbar-left input {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  outline: none;
+  border: 1px #DEDEDE solid;
+  background-color: #F7F7F7;
+  font-size: 16px;
+  color: #343434;
 }
+
+.app__navbar-right {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app__navbar-right img {
+ width: 35px;
+}
+
+.app__navbar-right-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.app__navbar-right-name img {
+  width: 20px;
+}
+
+/* css search */
+.app__search {
+  background-color: #F7F7F7;
+  border-radius: 5px;
+  color: #343434;
+}
+.app__search li {
+  margin-bottom: 0.7rem;
+}
+
