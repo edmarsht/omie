@@ -14,7 +14,7 @@ function Item({ name }) {
           <div className="item__infos-description">
             <h6>125 g - 22.64 € le kg</h6>
             <h6>4,9/5 ⭐️ (8)</h6>
-          </div>
+          </div> 
           <p>
             Ce cube de banane ravira petits et grands pour une pause saine et
             gourmande. C’est la version anti-gaspi de la banane fraiche car
