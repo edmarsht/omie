@@ -1,26 +1,33 @@
 import { useMemo, useState } from "react";
-import Fuse from "fuse.js";
 import data from "./data/data.json";
 import "./App.css";
 import basket from "./assets/basket.png";
 import points from "./assets/points.png";
+import Item from "./item/Item.js";
 
-const fuse = new Fuse(data.data.allProductReference, {
-  keys: ["display_name"],
-  includeScore: true,
-  isCaseSensitive: false,
-  shouldSort: true,
-  threshold: 0.35,
-  distance: 50,
-});
-
-const empty = [];
+// Convert to normal string (without accent & upper case)
+const normalizeString = (str) =>
+  str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
 
 function App() {
   const [search, setSearch] = useState("");
 
   const items = useMemo(
-    () => (search ? fuse.search(search).map(({ item }) => item) : empty),
+    () =>
+      search
+        ? data.data.allProductReference.filter(({ display_name }) => {
+            for (const word of search.split(" ")) {
+              if (
+                !normalizeString(display_name).includes(normalizeString(word))
+              )
+                return false;
+            }
+            return true;
+          })
+        : data.data.allProductReference,
     [search]
   );
 
@@ -48,13 +55,46 @@ function App() {
           <img src={basket} alt="shopping bag" />
         </div>
       </div>
-      {/* Résults */}
-      <div className="app__search section__margin section__padding">
-      {items.slice(0, 20).map((item, index) => (
-        <ul>
-          <li>{item.display_name}</li>
-        </ul>
-      ))}
+      {/* header */}
+      <div className="app__header">
+        <div className="app__header-container">
+          {/* header left menu */}
+          <div className="app__header-menu">
+            <div className="app__header-menu-container">
+              <h3>👌&ensp;&ensp; Laissez vous guider</h3>
+              <p>Acceuill</p>
+              <p>Les meilleures ventes</p>
+              <p>Afficher plus </p>
+            </div>
+            <div className="app__header-menu-container">
+              <h3>👌&ensp;&ensp; Laissez vous guider</h3>
+              <p>Acceuill</p>
+              <p>Les meilleures ventes</p>
+              <p>Afficher plus </p>
+            </div>
+            <div className="app__header-menu-container">
+              <h3>👌&ensp;&ensp; Laissez vous guider</h3>
+              <p>Acceuill</p>
+              <p>Les meilleures ventes</p>
+              <p>Afficher plus </p>
+            </div>
+            <div className="app__header-menu-container">
+              <h3>👌&ensp;&ensp; Laissez vous guider</h3>
+              <p>Acceuill</p>
+              <p>Les meilleures ventes</p>
+              <p>Afficher plus </p>
+            </div>
+          </div>
+          {/* header results */}
+          <div className="app__result">
+            <h3 className="app__result-title">Les produits d'Omie</h3>
+            <div className="app__header-search">
+              {items.slice(0, 15).map((item) => (
+                <Item name={item.display_name} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
